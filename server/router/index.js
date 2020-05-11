@@ -19,7 +19,6 @@ router
       /* eslint-disable no-console */
       console.warn('apiPrefix 未配置，proxy 功能无法正常使用！')
     }
-    console.log(333)
     // 自动代理
     // if (apiPrefix && ctx.path.startsWith(apiPrefix) && ctx.path !== apiPrefix) {
     //   const proxy = papayaProxy({

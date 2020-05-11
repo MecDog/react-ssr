@@ -11,7 +11,7 @@ const srcPath = path.join(root, 'client')
 const env = process.env.NODE_ENV || 'development'
 const isDev = env === 'development'
 const cssLoaders = [MiniCssExtractPlugin.loader]
-const babelConfig = require('./babel.config')
+const babelConfig = require('./babel.config.clent')
 
 module.exports = {
   context: srcPath,

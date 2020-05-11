@@ -38,6 +38,7 @@
     "babel": "^6.23.0",
     "babel-loader": "^8.1.0",
     "babel-plugin-import": "^1.13.0",
+    "babel-plugin-jsx-control-statements": "^4.1.0",
     "babel-plugin-transform-promise-to-bluebird": "^2.0.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "body-parser": "^1.19.0",
@@ -70,7 +71,7 @@
   },
   "scripts": {
     "start": "npm run server & npm run dev",
-    "server": "nodemon -w server server/server.js",
+    "server": "nodemon -w server --ignore server/views --ignore server/bundles script/dev-server.js",
     "dev": "nodemon -w client -w config script/start.js",
     "lint": "eslint . --fix --format codeframe"
   },

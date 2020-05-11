@@ -8,12 +8,12 @@ const webpack = require('webpack')
 const env = process.env.NODE_ENV || 'development'
 
 const root = path.join(__dirname, '..')
-const configPath = path.join(root, `config/webpack.config.${env}`)
-const serverEntry = path.join(configPath.output.path, './server.js')
+const configPath = path.join(root, `config/webpack.config.server.${env}`)
 
 const config = require(configPath)
+const serverEntry = path.join(config.output.path, './server.js')
 
-console.log('server build')
+console.log('server build...')
 webpack(config, (err, stats) => {
   if (stats.hasErrors()) {
     console.log('server build error')
@@ -34,5 +34,5 @@ webpack(config, (err, stats) => {
     )
   }
   console.log('server build success')
-  require(serverEntry)()
+  require(serverEntry)
 })

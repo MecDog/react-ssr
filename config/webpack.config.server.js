@@ -2,17 +2,19 @@ const path = require('path')
 const nodeExternals = require('webpack-node-externals')
 const webpack = require('webpack')
 const resolvePath = (pathstr) => path.resolve(__dirname, '../server', pathstr)
-const babelConfig = require('./babel.config')
+const babelConfig = require('./babel.config.server')
 
 /**
  * node编译注意要点
  * 1.避免nodemodules被打进包内，有三方包解决了这个问题
- * 2.图片等静态资源处理，必须和client的打包保持一致，尤其是publickPath，
+ * 2.图片等静态资源处理，一是必须和client的打包保持一致，尤其是publickPath；二是node端的文件，若不移动的话，则代码层必须使用绝对路径
  * 3.less文件处理，其处理也是根据是否使用MiniCssExtractPlugin而不一样
  */
 module.exports = {
   target: 'node',
-  entry: resolvePath('./server.js'), //入口文件
+  entry: {
+    server: resolvePath('./server.js'),
+  }, //入口文件
   output: {
     path: resolvePath('./bundles'),
     filename: '[name].js',
@@ -62,6 +64,10 @@ module.exports = {
         ],
       },
     ],
+  },
+  node: {
+    __filename: true,
+    __dirname: true,
   },
   plugins: [
     new webpack.DefinePlugin({

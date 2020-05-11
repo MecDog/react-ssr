@@ -6,7 +6,7 @@ const path = require('path')
 const fs = require('fs-extra')
 // const yaml = require('js-yaml')
 const webpack = require('webpack')
-const bodyParser = require('body-parser')
+// const bodyParser = require('body-parser')
 const WebpackDevServer = require('webpack-dev-server')
 
 const env = process.env.NODE_ENV || 'development'
@@ -62,18 +62,18 @@ const server = new WebpackDevServer(compiler, {
 //   console.info('webpack compile...')
 // })
 
-const app = server.app
+// const app = server.app
 
-app.use(bodyParser.json())
-app.use(
-  bodyParser.urlencoded({
-    extended: false,
-  }),
-)
+// app.use(bodyParser.json())
+// app.use(
+//   bodyParser.urlencoded({
+//     extended: false,
+//   }),
+// )
 
 compiler.hooks.done.tap('done', function (stats) {
   if (stats.hasErrors()) {
-    console.log('webpack build error')
+    console.log('client build error')
 
     return console.log(
       stats.toString({
@@ -106,7 +106,7 @@ compiler.hooks.done.tap('done', function (stats) {
     }),
   )
     .then(() => {
-      console.info(`webpack build success in ${time.toFixed(2)} s`)
+      console.info(`client build success in ${time.toFixed(2)} s`)
     })
     .catch((err) => console.error(err))
 })
@@ -115,5 +115,5 @@ server.listen(devPort, `localhost`, (err) => {
   if (err) {
     console.error(err)
   }
-  console.info('webpack building...')
+  console.info('client building...')
 })
