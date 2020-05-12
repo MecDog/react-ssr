@@ -2,6 +2,7 @@
 
 module.exports = {
   root: true,
+  parser: 'babel-eslint',
   env: {
     browser: true,
     node:true,
@@ -10,6 +11,7 @@ module.exports = {
   parserOptions: {
     "ecmaVersion": 2017,
     "sourceType": "module",
+    allowImportExportEverywhere: true
   },
 
 
@@ -25,6 +27,7 @@ module.exports = {
         singleQuote: true,
         trailingComma: 'all'
       }
-    ]
+    ],
+    'react/display-name': 0
   }
 }

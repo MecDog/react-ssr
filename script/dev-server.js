@@ -4,6 +4,7 @@
 
 const path = require('path')
 const webpack = require('webpack')
+const { spawn } = require('child_process')
 
 const env = process.env.NODE_ENV || 'development'
 
@@ -13,6 +14,7 @@ const configPath = path.join(root, `config/webpack.config.server.${env}`)
 const config = require(configPath)
 const serverEntry = path.join(config.output.path, './server.js')
 
+let serverProcess
 console.log('server build...')
 webpack(config, (err, stats) => {
   if (stats.hasErrors()) {
@@ -34,5 +36,9 @@ webpack(config, (err, stats) => {
     )
   }
   console.log('server build success')
-  require(serverEntry)
+  // require(serverEntry)
+  if (serverProcess) {
+    serverProcess.kill()
+  }
+  serverProcess = spawn('node', ['--inspect=9222', serverEntry], { stdio: 'inherit' })
 })

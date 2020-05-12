@@ -1,3 +1,5 @@
+import lazyLoader from '../client/router/lazyLoader'
+
 const Koa = require('koa')
 const path = require('path')
 const nunjucks = require('koa-nunjucks-2')
@@ -23,6 +25,8 @@ app.use(
 // routers
 app.use(router.routes())
 
-app.listen('8080', () => {
-  console.log(`server started at localhost: 8080`)
+lazyLoader.preloadAll().then(() => {
+  app.listen(8080, 'localhost', () => {
+    console.log(`server started at localhost: 8080`)
+  })
 })

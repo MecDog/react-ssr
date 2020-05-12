@@ -1,7 +1,12 @@
-import home from '../pages/home'
+import lazyLoader from './lazyLoader'
+
 export default [
   {
     path: '/home',
-    component: home,
+    component: lazyLoader(() => import('../pages/home')),
+  },
+  {
+    path: '/detail',
+    component: lazyLoader(() => import('../pages/home')),
   },
 ]
