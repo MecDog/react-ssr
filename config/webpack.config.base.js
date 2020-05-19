@@ -3,10 +3,13 @@ const webpack = require('webpack')
 const os = require('os')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const WorkboxPlugin = require('workbox-webpack-plugin')
 const HappyPack = require('happypack')
+const config = require('./appConfig.js')
 
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length })
 const root = path.join(__dirname, '../')
+
 const srcPath = path.join(root, 'client')
 const env = process.env.NODE_ENV || 'development'
 const isDev = env === 'development'
@@ -103,9 +106,17 @@ module.exports = {
       },
     ],
   },
+  optimization: {
+    runtimeChunk: {
+      name: 'runtime',
+    },
+  },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': { NODE_ENV: `"${process.env.NODE_ENV}"` },
+      // 环境变量 mode模式会自动启用
+      // 'process.env': { NODE_ENV: `"${process.env.NODE_ENV}"` },
+      'process.__baseURI__': JSON.stringify(config.baseURI),
+      'process.__apiPrefix__': JSON.stringify(config.apiPrefix),
       __SERVER__: false,
     }),
     new HappyPack({
@@ -120,7 +131,6 @@ module.exports = {
       verbose: isDev,
       verboseWhenProfiling: isDev,
     }),
-    new webpack.optimize.ModuleConcatenationPlugin(),
     // new HtmlWebpackPlugin({
     //   inject: false,
     //   filename: 'error.html',
@@ -131,8 +141,14 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
-      chunks: ['runtime', 'common', 'app'],
-      chunksSortMode: 'manual',
+      // chunks: ['runtime', 'common', 'app'],
+      // chunksSortMode: 'manual',
+      attributes: {
+        crossorigin: 'anonymous',
+      },
+    }),
+    new WorkboxPlugin.InjectManifest({
+      swSrc: path.join(__dirname, '../sw.js'),
     }),
   ],
 }

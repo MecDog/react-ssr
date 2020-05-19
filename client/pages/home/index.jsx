@@ -17,7 +17,7 @@ Home.propTypes = {
 Home.getInitialProps = function (ctx) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve({ str: 'getInitialProps' })
+      resolve({ str: 'server getInitialProps' })
     }, 1000)
   })
 }

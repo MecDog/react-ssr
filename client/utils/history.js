@@ -1,5 +1,5 @@
 import { createBrowserHistory } from 'history'
 
 export default createBrowserHistory({
-  basename: '/',
+  basename: process.__baseURI__,
 })

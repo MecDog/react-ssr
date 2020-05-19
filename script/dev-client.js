@@ -14,6 +14,7 @@ const env = process.env.NODE_ENV || 'development'
 const root = path.join(__dirname, '..')
 const viewsPath = path.join(root, 'server/views')
 const configPath = path.join(root, `config/webpack.config.${env}`)
+const serverBundlePath = require(`../config/webpack.config.server.${env}`).output.path
 // const appConfigPath = path.join(root, 'config/app.yaml')
 
 const config = require(configPath)
@@ -102,6 +103,12 @@ compiler.hooks.done.tap('done', function (stats) {
         const content = asset.source()
         const distPath = path.join(viewsPath, filePath)
         return fs.outputFile(distPath, content)
+      }
+      // 移动sw.js
+      if (file === 'sw.js') {
+        let content = asset.source()
+        let swPath = `${serverBundlePath}/sw.js`
+        return fs.outputFile(swPath, content)
       }
     }),
   )

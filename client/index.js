@@ -27,3 +27,10 @@ if (module.hot) {
     render()
   })
 }
+
+// todo,sw文件路径，测试环境和正式环境
+if (navigator.serviceWorker) {
+  navigator.serviceWorker.register(`/build/sw.js`, {
+    scope: process.__baseURI__,
+  })
+}

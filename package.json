@@ -14,6 +14,7 @@
     "koa-bodyparser": "^4.3.0",
     "koa-nunjucks-2": "^3.0.2",
     "koa-router": "^8.0.8",
+    "koa-static": "^5.0.0",
     "nodemon": "^2.0.3",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
@@ -23,7 +24,7 @@
     "react-router-config": "^5.1.1",
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.5",
-    "webpack-node-externals": "^1.7.2"
+    "workbox-routing": "^5.1.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
@@ -69,13 +70,16 @@
     "webpack": "^4.43.0",
     "webpack-dev-middleware": "^3.7.2",
     "webpack-dev-server": "^3.10.3",
-    "webpack-merge": "^4.2.2"
+    "webpack-merge": "^4.2.2",
+    "webpack-node-externals": "^1.7.2",
+    "workbox-webpack-plugin": "^5.1.3"
   },
   "scripts": {
     "start": "npm run server & npm run dev",
     "server": "node script/dev-server.js",
     "dev": "node script/dev-client.js",
-    "lint": "eslint . --fix --format codeframe"
+    "lint": "eslint . --fix --format codeframe",
+    "build": "node script/build.js"
   },
   "author": "",
   "license": "ISC"

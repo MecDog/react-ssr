@@ -29,6 +29,7 @@ const config = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].css',
+      chunkFilename: '[id].css',
     }),
     new webpack.HotModuleReplacementPlugin(), // 开启热重载
     new webpack.optimize.ModuleConcatenationPlugin(), // 开启作用域提升

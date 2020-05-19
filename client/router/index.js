@@ -1,23 +1,16 @@
 import React from 'react'
-import { Route } from 'react-router'
-import routeConfig from './config'
+// import { Route } from 'react-router'
 import PropTypes from 'prop-types'
 import RouteConfig from './config'
 import LazyLoader from './lazyLoader'
-import { matchRoutes } from 'react-router-config'
+import { matchRoutes, renderRoutes } from 'react-router-config'
 
 // function renderRoute(config, index) {
 //   return <Route {...config} key={index}></Route>
 // }
 
 export default function AppRouter() {
-  return (
-    <div>
-      {routeConfig.map((config, index) => (
-        <Route {...config} key={index}></Route>
-      ))}
-    </div>
-  )
+  return <div>{renderRoutes(RouteConfig)}</div>
 }
 AppRouter.propTypes = {
   history: PropTypes.object,

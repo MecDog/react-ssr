@@ -9,13 +9,13 @@
     <meta name="apple-touch-fullscreen" content="no" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-
+    <script src='{{baseURI}}/sw.js'></script>
 </head>
 <body>
 
 <div id="app">{{html | safe}}</div>
 <script>
     window.__initialProps__ = {{initialProps | safe}}
-</script>
+</script></head>
 </body>
 </html>

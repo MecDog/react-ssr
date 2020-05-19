@@ -11,9 +11,7 @@ const babelConfig = require('./babel.config.server')
  * 3.less文件处理，其处理也是根据是否使用MiniCssExtractPlugin而不一样
  */
 module.exports = {
-  mode: 'development',
   target: 'node',
-  devtool: 'cheap-module-source-map',
   entry: {
     server: resolvePath('./server.js'),
   }, //入口文件
