@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
 export default function Home({ str }) {
   return (
     <h1 style={{ textAlign: 'center' }}>

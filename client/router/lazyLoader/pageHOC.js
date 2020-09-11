@@ -40,7 +40,7 @@ export default (config) => {
       return Promise.reject(new Error('组件未预加载, server side先调用lazyLoader.prepoadAll'))
     }
     if (!config.loaded || !config.component) {
-      return Promise.reject(new Error('组件返回未空'))
+      return Promise.reject(new Error('组件返回为空'))
     }
     if (config.component.getInitialProps) {
       return config.component.getInitialProps(ctx)
